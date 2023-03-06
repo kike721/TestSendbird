@@ -205,6 +205,9 @@ const CallView: React.FC<CallViewProps> = ({ call }) => {
       remoteMediaViewSize = 'full';
       break;
     case 'ended':
+      localMediaViewSize = 'hidden';
+      remoteMediaViewSize= 'hidden';
+      break;
     default:
       localMediaViewSize = 'hidden';
       remoteMediaViewSize = 'hidden';

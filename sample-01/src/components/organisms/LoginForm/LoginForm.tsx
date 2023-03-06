@@ -97,32 +97,11 @@ const LoginForm = (props: LoginFormProps) => {
   }
 
   useEffect(() => {
-    if (authArgs.app_id) login();
+    if (APP_ID && USER_ID) login();
   }, [])
 
   return (
-    <FormContainer>
-      <InputLabel htmlFor="appIdInput">App ID</InputLabel>
-      {appIdInput}
-      <InputLabel htmlFor="userIdInput">User ID</InputLabel>
-      {userIdInput}
-      {
-        IS_ACCESS_TOKEN_NEEDED
-          && (
-          <>
-            <InputLabel htmlFor="accessTokenInput">Access Token</InputLabel>
-            {accessTokenInput}
-          </>
-          )
-      }
-      <LoginButton
-        primary
-        size="mid"
-        onClick={() => login()}
-      >
-        Sign in
-      </LoginButton>
-    </FormContainer>
+    <h1>Cargando</h1>
   );
 };
 

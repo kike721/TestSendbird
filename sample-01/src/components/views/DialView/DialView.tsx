@@ -59,23 +59,20 @@ function getCallOption(callOption?: DirectCallOption) {
 interface DialViewProps {}
 const DialView: React.FC<DialViewProps> = props => {
   const sbCall = useSbCalls();
-  const [userId, userIdInput] = useTextInput({ id: 'userIdInput', initValue: '', placeholder: 'Enter user ID' });
   const dial = (isVideoCall: boolean) => {
-    sbCall.dial({ userId, isVideoCall, callOption: getCallOption({}) });
+    sbCall.dial({ userId: 'receiver', isVideoCall, callOption: getCallOption({}) });
   };
 
-  return (
-    <Wrapper>
-      <FormContainer>
-        <Title className="">Make a call</Title>
-        {userIdInput}
+  const buttonCall = () => <Wrapper>
+  <FormContainer>
+    <ButtonsGroup>
+      <VideoDialButton onClick={() => dial(true)} />
+    </ButtonsGroup>
+  </FormContainer>
+</Wrapper>
 
-        <ButtonsGroup>
-          <VideoDialButton onClick={() => dial(true)} />
-          <AudioDialButton onClick={() => dial(false)} />
-        </ButtonsGroup>
-      </FormContainer>
-    </Wrapper>
+  return (
+    buttonCall()
   );
 };
 
