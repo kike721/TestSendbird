@@ -1,44 +1,51 @@
-import {useEffect, useMemo, useRef, useState } from "react";
-import ReactPlayer from 'react-player';
-import {useSbCalls} from "../../../lib/sendbird-calls";
-import {useHistory, useLocation, useRouteMatch} from "react-router-dom";
-import { Box, Button, Card, CardActionArea, CardContent, Typography } from '@mui/material';
-import VideoCameraFrontIcon from '@mui/icons-material/VideoCameraFront';
+import { Box, Card, CardActionArea, CardContent, Typography } from '@mui/material';
 import TopBar from 'components/molecules/TopBar';
+import type { CallState } from "lib/sendbird-calls/SbCallsContext/types";
+import { useEffect, useMemo, useRef, useState } from "react";
+import ReactPlayer from 'react-player';
+import { useHistory, useLocation, useRouteMatch } from "react-router-dom";
+import styled from "styled-components";
 import Authenticator from "../../../containers/Authenticator";
+import { useSbCalls } from "../../../lib/sendbird-calls";
+import * as mixins from "../../../styles/mixins";
+import { media } from "../../../utils";
 import Video1 from '../../../videos/video1.mp4';
 import Video2 from '../../../videos/video2.mp4';
+import Overlay from "../../atoms/Overlay";
+import Screen from "../../templates/Screen/Screen";
 import CallView from "../../views/CallView";
 import DialView from "../../views/DialView";
-import styled from "styled-components";
-import {media} from "../../../utils";
-import Screen from "../../templates/Screen/Screen";
-import * as mixins from "../../../styles/mixins";
-import Overlay from "../../atoms/Overlay";
-import type { CallState } from "lib/sendbird-calls/SbCallsContext/types";
 
 const Wrapper = styled.div`
   width: 100vw;
   height: 100vh;
-  padding-bottom: 55px; // TabToolbar height
+  display: flex;
+  justify-content: center;
+  align-items: center;
   ${media.main} {
     padding-bottom: 0;
   }
 `;
 
+const BoxOptions = styled.div`
+  display: flex;
+  justifyContent: space-betweens;
+  position: absolute;
+`;
+
 const Contents = styled(Screen)`
   ${mixins.flexCenter};
-  flex-direction: column;
-  height: calc(100% - 80px - 57px);
+  flex-direction: colum;
+  height: calc(100% - 150px);
   ${media.main} {
-    height: calc(100% - 48px - 56px);
+    height: calc(100% - 150px);
   }
 `;
 
 interface DirectCallMainProps {
 }
 const DirectCallMain: React.FC<DirectCallMainProps> = ({ children }) => {
-  const [showOptions, setShowOptions] = useState(false);
+  const [showOptions, setShowOptions] = useState(true);
   const [showButtonCall, setShowButtonCall] = useState(false);
   const [playVideo, setPlayVideo] = useState(false);
   const [keyVideo, setKeyVideo] = useState('');
@@ -105,11 +112,11 @@ const DirectCallMain: React.FC<DirectCallMainProps> = ({ children }) => {
 
   const header = location.pathname === `${url}/login`
     ? null
-    : [ 
+    : [
       <TopBar key='topbar'/>,
       <Authenticator key="authenticator"/>,
     ];
-  
+
   useEffect(() => {
     if (onCall) {
       const { callState } = onCall;
@@ -127,13 +134,15 @@ const DirectCallMain: React.FC<DirectCallMainProps> = ({ children }) => {
       {header}
       <Contents>
         <ReactPlayer
+          width="100%"
+          height="100%"
           ref={refPlayer}
           playing={playVideo}
           url={videos[keyVideo as keyof typeof videos]}
           onEnded={handleOnEnded}
         />
         {showOptions &&
-          <Box sx={{display: 'flex', justifyContent: 'space-between'}}>
+          <BoxOptions>
             <Card>
               <CardActionArea onClick={() => handleOptionSelect('opt1')}>
                 <CardContent>
@@ -141,7 +150,7 @@ const DirectCallMain: React.FC<DirectCallMainProps> = ({ children }) => {
                     Opción 1
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
-                    Texto opción 1
+                    POLIZA GASTOS MAYORES
                   </Typography>
                 </CardContent>
               </CardActionArea>
@@ -153,7 +162,7 @@ const DirectCallMain: React.FC<DirectCallMainProps> = ({ children }) => {
                     Opción 2
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
-                    Texto opción 2
+                    POLIZA ACCIDENTES PERSONALES
                   </Typography>
                 </CardContent>
               </CardActionArea>
@@ -165,25 +174,25 @@ const DirectCallMain: React.FC<DirectCallMainProps> = ({ children }) => {
                     Opción 3
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
-                    Texto opción 3
+                    POLIZA SEGURO DE SALUD
                   </Typography>
                 </CardContent>
               </CardActionArea>
             </Card>
-          </Box>
+          </BoxOptions>
         }
         {showButtonCall && 
           <Box sx={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between'}}>
             <Typography gutterBottom variant="h5" component="div">
-              Si aún tienes dudas puedes tener una llamada con un asesor.
+              ¿Necesitas  ayuda adicional para llenar el cuestionario o tiene preguntas sobre tu póliza?
             </Typography>
             <DialView />
           </Box>
         }
         {onCall &&
-        <Overlay>
-          <CallView call={onCall} />
-        </Overlay>
+          <Overlay>
+            <CallView call={onCall} />
+          </Overlay>
         }
       </Contents>
     </Wrapper>
