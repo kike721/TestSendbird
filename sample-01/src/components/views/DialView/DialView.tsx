@@ -9,27 +9,76 @@ import * as mixins from 'styles/mixins';
 import { media } from 'utils';
 
 const Wrapper = styled.div`
-
+  padding: 56px 24px;
 `;
 
-const FormContainer = styled.div`
+const TitleContainer = styled.div`
   ${mixins.flexCenter};
-  width: 312px;
   flex-direction: column;
   box-sizing: border-box;
   border: none;
-  
-  ${media.main} {
-    background-color: var(--white);
-  }
 `;
 
+const ControlsContainer = styled.div`
+  ${mixins.flexCenter};
+  flex-direction: column;
+  box-sizing: border-box;
+  border: none;
+  margin-top: 100px;
+`;
+
+const TitleControls = styled.div`
+  color:white;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 40px;
+  text-align: center;
+`;
 const Title = styled.div`
-  ${fonts.big};
-  ${fonts.demi};
+  color: white;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 26px;
   margin-bottom: 16px;
 `;
 
+const HeaderTitle = styled.div`
+  color: white;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 26px;
+`;
+
+const Logo = styled.img`
+`;
+
+const CallButton = styled.div`
+  align-items: center;
+  background: #13283e;
+  display: flex;
+  flex-direction: column;
+  height: 152px;
+  width: 156px;
+`;
+
+const ButtonsContainer = styled.div`
+  align-items: center;
+  display: flex;
+  margin-top: 54px;
+  justify-content: space-between;
+  width: 100%;
+`;
+
+const IconButton = styled.img`
+  margin: 36px 54px;
+`;
+
+const TextButton = styled.div`
+  color: white;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+`;
 const Description = styled.div`
   ${fonts.normal};
   ${fonts.heavy};
@@ -38,6 +87,12 @@ const Description = styled.div`
   text-align: center;
   margin-bottom: 32px;
   letter-spacing: -0.1px;
+`;
+
+const LogoBackground = styled.img`
+  position: absolute;
+  bottom: 0;
+  right: 0;
 `;
 
 const ButtonsGroup = styled.div`
@@ -59,22 +114,31 @@ function getCallOption(callOption?: DirectCallOption) {
 interface DialViewProps {}
 const DialView: React.FC<DialViewProps> = props => {
   const sbCall = useSbCalls();
-  const [userId, userIdInput] = useTextInput({ id: 'userIdInput', initValue: '', placeholder: 'Enter user ID' });
   const dial = (isVideoCall: boolean) => {
-    sbCall.dial({ userId, isVideoCall, callOption: getCallOption({}) });
+    sbCall.dial({ userId: 'receiver', isVideoCall, callOption: getCallOption({}) });
   };
 
   return (
     <Wrapper>
-      <FormContainer>
-        <Title className="">Make a call</Title>
-        {userIdInput}
-
-        <ButtonsGroup>
-          <VideoDialButton onClick={() => dial(true)} />
-          <AudioDialButton onClick={() => dial(false)} />
-        </ButtonsGroup>
-      </FormContainer>
+      <TitleContainer>
+        <HeaderTitle>Bienvenido al</HeaderTitle>
+        <Title>Centro de Experiencia Remota</Title>
+        <Logo src='/assets/logo.png'></Logo>
+      </TitleContainer>
+      <ControlsContainer>
+        <TitleControls>¿Cómo Prefieres recibir la asesoría?</TitleControls>
+        <ButtonsContainer>
+          <CallButton onClick={() => dial(true)}>
+            <IconButton src="/assets/icon-video.png"/>
+            <TextButton>Videollamada</TextButton>
+          </CallButton>
+          <CallButton onClick={() => window.open('https://wa.me/14421555140')}>
+            <IconButton src="/assets/icon-whatsapp.png"/>
+            <TextButton>Whatsapp</TextButton>
+          </CallButton>
+        </ButtonsContainer>
+      </ControlsContainer>
+      <LogoBackground src="/assets/logo_footer.png"/>
     </Wrapper>
   );
 };

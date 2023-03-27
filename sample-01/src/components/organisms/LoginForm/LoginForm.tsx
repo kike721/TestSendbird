@@ -97,7 +97,7 @@ const LoginForm = (props: LoginFormProps) => {
   }
 
   useEffect(() => {
-    if (authArgs.app_id) login();
+    login();
   }, [])
 
   return (

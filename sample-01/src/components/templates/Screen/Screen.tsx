@@ -5,7 +5,6 @@ import * as mixins from 'styles/mixins';
 export const Screen = styled.div`
   width: 100%;
   height: 100%;
-  padding: 24px;
   box-sizing: border-box;
 `;
 

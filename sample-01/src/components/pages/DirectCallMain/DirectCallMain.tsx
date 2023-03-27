@@ -12,6 +12,7 @@ import * as mixins from "../../../styles/mixins";
 import Overlay from "../../atoms/Overlay";
 
 const Wrapper = styled.div`
+  background-color: #001428;
   width: 100vw;
   height: 100vh;
   padding-bottom: 55px; // TabToolbar height
@@ -21,7 +22,6 @@ const Wrapper = styled.div`
 `;
 
 const Contents = styled(Screen)`
-  ${mixins.flexCenter};
   flex-direction: column;
   height: calc(100% - 80px - 57px);
   ${media.main} {
@@ -60,7 +60,6 @@ const DirectCallMain: React.FC<DirectCallMainProps> = ({ children }) => {
     return (
         <Wrapper>
             {!!calls.length && <CallView call={calls[calls.length - 1]}/>}
-            {header}
             <Contents>
                 <DialView />
                 {onCall &&
