@@ -58,8 +58,6 @@ const LoginPage = () => {
   return (
     <Wrapper>
       <Content>
-        <Logo size="mid" />
-        <Title>Sendbird Calls</Title>
         <LoginForm />
       </Content>
       <VersionInfo>
