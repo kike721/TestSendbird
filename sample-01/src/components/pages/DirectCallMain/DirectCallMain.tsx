@@ -1,6 +1,7 @@
 import {useSbCalls} from "../../../lib/sendbird-calls";
 import {useHistory, useLocation, useRouteMatch} from "react-router-dom";
 import {useEffect, useMemo} from "react";
+import type { CallState } from "lib/sendbird-calls/SbCallsContext/types";
 import Header from "../../organisms/Header";
 import Authenticator from "../../../containers/Authenticator";
 import CallView from "../../views/CallView";
@@ -32,7 +33,7 @@ const Contents = styled(Screen)`
 interface DirectCallMainProps {
 }
 const DirectCallMain: React.FC<DirectCallMainProps> = ({ children }) => {
-    const { isAuthenticated, calls } = useSbCalls();
+    const { isAuthenticated, calls, clearCalls } = useSbCalls();
     const history = useHistory();
     const location = useLocation();
     const query = new URLSearchParams(useLocation().search);
@@ -56,6 +57,15 @@ const DirectCallMain: React.FC<DirectCallMainProps> = ({ children }) => {
             <Header key="header"/>,
             <Authenticator key="authenticator"/>,
         ];
+
+    useEffect(() => {
+      if (onCall) {
+        const { callState } = onCall;
+        if (callState === 'ended' as CallState) {
+          clearCalls();
+        }
+      }
+    }, [onCall])
 
     return (
         <Wrapper>
