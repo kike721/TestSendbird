@@ -114,8 +114,9 @@ function getCallOption(callOption?: DirectCallOption) {
 interface DialViewProps {}
 const DialView: React.FC<DialViewProps> = props => {
   const sbCall = useSbCalls();
+  const AGENT_ID = process.env.REACT_APP_RECEIVER_ID || '';
   const dial = (isVideoCall: boolean) => {
-    sbCall.dial({ userId: 'receiver', isVideoCall, callOption: getCallOption({}) });
+    sbCall.dial({ userId: 'Agente_Motorola', isVideoCall, callOption: getCallOption({}) });
   };
 
   return (
@@ -129,12 +130,12 @@ const DialView: React.FC<DialViewProps> = props => {
         <TitleControls>¿Cómo Prefieres recibir la asesoría?</TitleControls>
         <ButtonsContainer>
           <CallButton onClick={() => dial(true)}>
-            <IconButton src="/assets/icon-video.png"/>
-            <TextButton>Videollamada</TextButton>
+            <IconButton src="/assets/icon-video.png" onClick={() => dial(true)}/>
+            <TextButton onClick={() => dial(true)}>Videollamada</TextButton>
           </CallButton>
-          <CallButton onClick={() => window.open('https://wa.me/14421555140')}>
-            <IconButton src="/assets/icon-whatsapp.png"/>
-            <TextButton>Whatsapp</TextButton>
+          <CallButton onClick={() => window.open('https://wa.me/14421555140?text=Prueba%20motorola')}>
+            <IconButton src="/assets/icon-whatsapp.png" onClick={() => window.open('https://wa.me/14421555140?text=Prueba%20motorola')}/>
+            <TextButton onClick={() => window.open('https://wa.me/14421555140?text=Prueba%20motorola')}>Whatsapp</TextButton>
           </CallButton>
         </ButtonsContainer>
       </ControlsContainer>

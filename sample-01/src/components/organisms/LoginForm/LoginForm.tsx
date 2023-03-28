@@ -69,7 +69,7 @@ const LoginForm = (props: LoginFormProps) => {
   const stored = storage.getItem('sbCalls');
 
   const APP_ID = authArgs.app_id || stored?.appId || process.env.REACT_APP_APP_ID || '';
-  const USER_ID = authArgs.user_id || stored?.userId || process.env.REACT_APP_USER_ID || '';
+  const USER_ID = process.env.REACT_APP_USER_ID;
   const ACCESS_TOKEN = authArgs.access_token || stored?.accessToken || process.env.REACT_APP_ACCESS_TOKEN || '';
   const IS_ACCESS_TOKEN_NEEDED = process.env.REACT_APP_IS_ACCESS_TOKEN_NEEDED === 'true';
   const ROOM_ID = authArgs.room_id || '';

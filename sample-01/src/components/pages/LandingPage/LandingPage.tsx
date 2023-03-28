@@ -1,6 +1,8 @@
 import ChoicesTemp from '../../templates/Choices';
+import { useHistory } from "react-router-dom";
 import styled from 'styled-components';
 import * as mixins from 'styles/mixins';
+import { useEffect } from 'react';
 
 const Wrapper = styled.div`
   ${mixins.fullScreen};
@@ -15,6 +17,11 @@ const Logo = styled.img`
 `;
 
 const LandingPage = () => {
+  let history = useHistory();
+
+  useEffect(() => {
+    history.push("/direct-call");
+  }, [])
 
   return (
     <Wrapper>

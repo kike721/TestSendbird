@@ -59,7 +59,7 @@ const ConnectionInfo = styled.div`
 const PeerState = styled.div`
   ${mixins.flexColumn};
   align-items: center;
-  margin-bottom: 97px;
+  margin-bottom: 597px;
 `;
 
 const PeerMuteIcon = styled.div`
@@ -264,7 +264,6 @@ const CallView: React.FC<CallViewProps> = ({ call }) => {
         {
           remoteUser.profileUrl && <PeerProfile src={remoteUser.profileUrl || ''} alt="Sendbird voice & video call opponent profile photo" />
         }
-        <PeerName>{remoteUser.nickname || remoteUser.userId}</PeerName>
         {
           isNot(...connectedStates)
           && (
