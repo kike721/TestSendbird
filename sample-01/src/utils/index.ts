@@ -18,3 +18,10 @@ export const mediaMax = (Object.keys(MEDIA_SIZES) as Labels[])
       @media (max-width: ${(MEDIA_SIZES[label] - 1) / 16}em)`;
     return acc;
   }, {} as Record<Labels, string>);
+
+export const mediaMaxPhone = (Object.keys(MEDIA_SIZES) as Labels[])
+  .reduce((acc, label) => {
+    acc[label] = `
+      @media (max-width: ${(MEDIA_SIZES[label]) / 16}em)`;
+    return acc;
+  }, {} as Record<Labels, string>);

@@ -6,7 +6,7 @@ import { useTextInput } from 'components/atoms/Input';
 import { useSbCalls } from 'lib/sendbird-calls';
 import * as fonts from 'styles/fonts';
 import * as mixins from 'styles/mixins';
-import { media } from 'utils';
+import { mediaMaxPhone } from 'utils';
 
 const Wrapper = styled.div`
   padding: 56px 24px;
@@ -52,13 +52,18 @@ const HeaderTitle = styled.div`
 const Logo = styled.img`
 `;
 
-const CallButton = styled.div`
+const CallButton = styled.button`
   align-items: center;
   background: #13283e;
+  border: none;
   display: flex;
   flex-direction: column;
   height: 152px;
   width: 156px;
+  ${mediaMaxPhone.mobile} {
+    height: 130px;
+    width: 120px;
+  }
 `;
 
 const ButtonsContainer = styled.div`
