@@ -25,6 +25,8 @@ const ControlsContainer = styled.div`
   box-sizing: border-box;
   border: none;
   margin-top: 100px;
+  position: relative;
+  z-index: 10;
 `;
 
 const TitleControls = styled.div`
@@ -124,6 +126,14 @@ const DialView: React.FC<DialViewProps> = props => {
     sbCall.dial({ userId: 'Agente_Motorola', isVideoCall, callOption: getCallOption({}) });
   };
 
+  const handleOnClickCallButton = () => {
+    dial(true)
+  }
+
+  const handleOnClickWhatsappButton = () => {
+    window.open('https://wa.me/14421555140?text=Prueba%20motorola');
+  }
+
   return (
     <Wrapper>
       <TitleContainer>
@@ -134,13 +144,13 @@ const DialView: React.FC<DialViewProps> = props => {
       <ControlsContainer>
         <TitleControls>¿Cómo Prefieres recibir la asesoría?</TitleControls>
         <ButtonsContainer>
-          <CallButton onClick={() => dial(true)}>
-            <IconButton src="/assets/icon-video.png" onClick={() => dial(true)}/>
-            <TextButton onClick={() => dial(true)}>Videollamada</TextButton>
+          <CallButton onClick={handleOnClickCallButton}>
+            <IconButton src="/assets/icon-video.png"/>
+            <TextButton>Videollamada</TextButton>
           </CallButton>
-          <CallButton onClick={() => window.open('https://wa.me/14421555140?text=Prueba%20motorola')}>
-            <IconButton src="/assets/icon-whatsapp.png" onClick={() => window.open('https://wa.me/14421555140?text=Prueba%20motorola')}/>
-            <TextButton onClick={() => window.open('https://wa.me/14421555140?text=Prueba%20motorola')}>Whatsapp</TextButton>
+          <CallButton onClick={handleOnClickWhatsappButton}>
+            <IconButton src="/assets/icon-whatsapp.png"/>
+            <TextButton>Whatsapp</TextButton>
           </CallButton>
         </ButtonsContainer>
       </ControlsContainer>
