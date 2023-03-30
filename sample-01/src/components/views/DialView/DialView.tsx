@@ -25,8 +25,6 @@ const ControlsContainer = styled.div`
   box-sizing: border-box;
   border: none;
   margin-top: 100px;
-  position: relative;
-  z-index: 10;
 `;
 
 const TitleControls = styled.div`
@@ -97,8 +95,9 @@ const Description = styled.div`
 `;
 
 const LogoBackground = styled.img`
-  position: absolute;
   bottom: 0;
+  height: 230px;
+  position: absolute;
   right: 0;
 `;
 
