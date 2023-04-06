@@ -95,9 +95,6 @@ const FormInput = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
-  ${Input} {
-    
-  }
 `
 
 const GroupCallMain = () => {
@@ -159,10 +156,7 @@ const GroupCallMain = () => {
       })
   }, [sbCalls]);
 
-  // console.log(rooms);
   console.log(JSON.stringify(rooms[rooms.length - 1], null, 4));
-  // console.log({ onCall });
-
 
   return (
     <Wrapper>

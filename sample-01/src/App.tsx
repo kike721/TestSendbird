@@ -13,12 +13,16 @@ import TotemPage from 'components/pages/TotemPage';
 import GroupCallApp from './GroupCallApp';
 import DirectCallApp from './DirectCallApp';
 import LandingPage from './components/pages/LandingPage';
+import VideoGNP from 'components/gnp/VIdeoGNP';
+import HeaderGNP from 'components/gnp/HeaderGNP';
 
 function App() {
   return (
     <Router>
       <Switch>
         <Route exact path="/" component={LandingPage} />
+        <Route exact path="/video" component={VideoGNP} />
+        <Route exact path="/prueba" component={HeaderGNP} />
         <Route path="/direct-call" component={DirectCallApp} />
         <Route path="/group-call" component={GroupCallApp} />
         <Route path="/login" component={LoginPage} />
