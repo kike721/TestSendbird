@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import type { DirectCallOption } from 'sendbird-calls';
+import { useSbCalls } from 'lib/sendbird-calls';
 import telephone from '../../../assets/telephone.png';
 import print from '../../../assets/print.png';
 
@@ -31,13 +33,27 @@ const ImgStyle = styled.img`
   margin: 0 auto 1em auto;
 `;
 
+function getCallOption(callOption?: DirectCallOption) {
+  return {
+    localMediaView: undefined,
+    remoteMediaView: undefined,
+    videoEnabled: true,
+    audioEnabled: true,
+    ...callOption,
+  };
+}
+
 
 const OptionsGNP = ({
   text = '¿En qué te podemos ayudar?'
 }: { text?: string; }) => {
+  const sbCall = useSbCalls();
+  const dial = (isVideoCall: boolean) => {
+    sbCall.dial({ userId: 'receiver', isVideoCall, callOption: getCallOption({}) });
+  };
   return (
     <WrapOptions>
-      <StyleOption>
+      <StyleOption onClick={() => dial(true)} >
         <ImgStyle src={telephone} alt="call telephone" />
         Marcar a un agente
       </StyleOption>

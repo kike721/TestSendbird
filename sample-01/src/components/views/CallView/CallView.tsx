@@ -105,7 +105,7 @@ const getVideoStyleFromSize = (size: MediaViewSize) => {
           width: 200px;
           height: 150px;
           border-radius: 8px;
-          background-color: var(--navy-300);
+          background-color: white;
         `;
     case 'full':
       return css`
@@ -134,8 +134,7 @@ const VideoView = styled.video`
 
 const Controls = styled.div`
   ${mixins.flexCenter};
-  position: absolute;
-  bottom: 40px;
+  top: 700px;
   ${media.main} {
     position: relative;
   }
@@ -219,7 +218,7 @@ const CallView: React.FC<CallViewProps> = ({ call }) => {
 
   return (
     <Wrapper>
-      <Background>
+      {/* <Background>
         {
           call.isVideoCall
             ? (
@@ -262,17 +261,17 @@ const CallView: React.FC<CallViewProps> = ({ call }) => {
               </>
             )
         }
-      </Background>
+      </Background> */}
       <Foreground>
         {
           remoteUser.profileUrl && <PeerProfile src={remoteUser.profileUrl || ''} alt="Sendbird voice & video call opponent profile photo" />
         }
-        <PeerName>{remoteUser.nickname || remoteUser.userId}</PeerName>
+        
         {
           isNot(...connectedStates)
           && (
             <ConnectionInfo>
-              {is('dialing') && <CallingText />}
+              {is('dialing') && <div> Marcando a un agente...</div>}
               {is('ringing') && <RingingText isVideoCall={call.isVideoCall} />}
               {is('ended') && <>{call.endResult}</>}
             </ConnectionInfo>
@@ -282,17 +281,17 @@ const CallView: React.FC<CallViewProps> = ({ call }) => {
           {
             is(...connectedStates) && !isRemoteAudioEnabled && (
               <>
-                <PeerMuteIcon />
+                {/* <PeerMuteIcon />
                 <PeerMuteLabel>
                   {remoteUser.userId} audio muted this call
-                </PeerMuteLabel>
+                </PeerMuteLabel> */}
               </>
             )
           }
         </PeerState>
 
         <Controls>
-          {
+          {/* {
             isNot('ended') && ([
               isLocalAudioEnabled
                 ? <MuteButton key="mute-audio" onClick={() => call.muteMicrophone()} />
@@ -301,7 +300,7 @@ const CallView: React.FC<CallViewProps> = ({ call }) => {
                 ? <StopVideoButton key="stop-video" onClick={() => call.stopVideo()} />
                 : <StartVideoButton key="start-video" onClick={() => call.startVideo()} />,
             ])
-          }
+          } */}
           {
             is('ringing')
             && (call.isVideoCall

@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import * as mixins from 'styles/mixins';
 import ReactPlayer from 'react-player';
-import Video from '../../../videos/video2.mp4';
+import Video from '../../../videos/gnp1.mp4';
 import logoGNPWhite from '../../../assets/logo_GNP_blanco.png';
 import selection from '../../../assets/selection.png';
 
@@ -68,7 +68,7 @@ const VideoGNP = () => {
   const history = useHistory();
 
   const handleSection = () => {
-    history.push(`/prueba`);
+    history.push(`/direct-call/full-screen`);
   }
 
   return (

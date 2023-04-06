@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import ChoicesTemp from '../../templates/Choices';
 import styled from 'styled-components';
 import * as mixins from 'styles/mixins';
@@ -15,6 +17,12 @@ const Logo = styled.img`
 `;
 
 const LandingPage = () => {
+  const history = useHistory();
+
+  useEffect(() => {
+    history.push('/video');
+  }, []);
+
   return (
     <Wrapper>
       <Logo
