@@ -15,7 +15,6 @@ const Logo = styled.img`
 `;
 
 const LandingPage = () => {
-
   return (
     <Wrapper>
       <Logo
