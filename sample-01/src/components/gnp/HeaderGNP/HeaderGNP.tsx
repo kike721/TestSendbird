@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import logoGNPColor from '../../../assets/logo_GNP_color.png';
-import OptionsGNP from '../OptionsGNP';
 
 const ContentHeader = styled.div`
   background: #F4F7FF;
@@ -14,12 +13,17 @@ const ContentHeader = styled.div`
   text-aling: center;
   width: 100%;
   text-align: center;
+  padding: 2em;
 `;
 
 const ImgLogo = styled.img`
   width: 100%;
   max-width: 150px;
-  margin: 0 auto 3em auto;
+  margin: 0 auto;
+`;
+
+const Text = styled.p`
+  margin-top: 3em;
 `;
 
 const HeaderGNP = ({
@@ -29,7 +33,7 @@ const HeaderGNP = ({
     <>
       <ContentHeader>
         <ImgLogo src={logoGNPColor} alt="loco GNP color" />
-        {text}
+        {text && <Text></Text>}
       </ContentHeader>
     </>
   )
