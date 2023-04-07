@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import logoGNPColor from '../../../assets/logo_GNP_color.png';
 import OptionsGNP from '../OptionsGNP';
-import PrintGNP from '../PrintGNP';
 
 const ContentHeader = styled.div`
   background: #F4F7FF;
@@ -14,6 +13,7 @@ const ContentHeader = styled.div`
   padding: 2em;
   text-aling: center;
   width: 100%;
+  text-align: center;
 `;
 
 const ImgLogo = styled.img`
@@ -23,7 +23,7 @@ const ImgLogo = styled.img`
 `;
 
 const HeaderGNP = ({
-  text = '¿En qué te podemos ayudar?'
+  text,
 }: { text?: string; }) => {
   return (
     <>
@@ -31,8 +31,6 @@ const HeaderGNP = ({
         <ImgLogo src={logoGNPColor} alt="loco GNP color" />
         {text}
       </ContentHeader>
-      <OptionsGNP />
-      <PrintGNP />
     </>
   )
 };

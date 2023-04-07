@@ -5,45 +5,24 @@ import { useHistory, useLocation, useRouteMatch } from "react-router-dom";
 import styled from "styled-components";
 import Authenticator from "../../../containers/Authenticator";
 import { useSbCalls } from "../../../lib/sendbird-calls";
-import * as mixins from "../../../styles/mixins";
 import { media } from "../../../utils";
 import Overlay from "../../atoms/Overlay";
-import Screen from "../../templates/Screen/Screen";
 import CallView from "../../views/CallView";
-import DialView from "../../views/DialView";
 import HeaderGNP from 'components/gnp/HeaderGNP';
+import PrintGNP from 'components/gnp/PrintGNP';
+import OptionsGNP from 'components/gnp/OptionsGNP';
+import SuccessGNP from 'components/gnp/SuccessGNP';
 
 const Wrapper = styled.div`
   width: 100vw;
   height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   ${media.main} {
     padding-bottom: 0;
   }
 `;
-
-const BoxOptions = styled.div`
-  display: flex;
-  justifyContent: space-betweens;
-  position: absolute;
-`;
-
-const Contents = styled(Screen)`
-  ${mixins.flexCenter};
-  flex-direction: colum;
-  height: calc(100% - 150px);
-  ${media.main} {
-    height: calc(100% - 150px);
-  }
-`;
-
 interface DirectCallMainProps {
 }
 const DirectCallMain: React.FC<DirectCallMainProps> = ({ children }) => {
-  const [showOptions, setShowOptions] = useState(true);
-  const [showButtonCall, setShowButtonCall] = useState(false);
   const [playVideo, setPlayVideo] = useState(false);
   const [keyVideo, setKeyVideo] = useState('');
   const refPlayer = useRef(null);
@@ -53,11 +32,17 @@ const DirectCallMain: React.FC<DirectCallMainProps> = ({ children }) => {
   const query = new URLSearchParams(useLocation().search);
   const { path, url } = useRouteMatch();
 
+  const [showPrint, setShowPrint] = useState(true);
+  const [showSuccess, setShowSuccess] = useState(true);
+
   const restartStates = () => {
-    setShowOptions(false);
     setKeyVideo('loop');
-    setShowButtonCall(false);
     setPlayVideo(true);
+  }
+
+  const handleOptions = () => {
+    console.log('entre')
+    setShowPrint(true);
   }
 
   useEffect(() => {
@@ -79,7 +64,7 @@ const DirectCallMain: React.FC<DirectCallMainProps> = ({ children }) => {
 
   const header = location.pathname === `${url}/login`
     ? null
-    : 
+    :
       <Authenticator key="authenticator"/>;
 
   useEffect(() => {
@@ -97,22 +82,24 @@ const DirectCallMain: React.FC<DirectCallMainProps> = ({ children }) => {
     <Wrapper>
       {!!calls.length && <CallView call={calls[calls.length - 1]}/>}
       {header}
-      <Contents>
-        <HeaderGNP />
-        {showButtonCall && 
-          <Box sx={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between'}}>
-            <Typography gutterBottom variant="h5" component="div">
-              ¿Necesitas  ayuda adicional para llenar el cuestionario o tiene preguntas sobre tu póliza?
-            </Typography>
-            <DialView />
-          </Box>
-        }
-        {onCall &&
-          <Overlay>
-            <CallView call={onCall} />
-          </Overlay>
-        }
-      </Contents>
+      {!showPrint &&
+        <>
+          <HeaderGNP text='¿En qué te podemos ayudar?' />
+          <OptionsGNP onClickPrint={() => handleOptions}/>
+        </>
+      }
+      {false &&
+        <>
+          <HeaderGNP text='¿En qué te podemos ayudar?' />
+          <PrintGNP />
+        </>
+      }
+      {showSuccess && showPrint && <SuccessGNP />}
+      {onCall &&
+        <Overlay>
+          <CallView call={onCall} />
+        </Overlay>
+      }
     </Wrapper>
   );
 };

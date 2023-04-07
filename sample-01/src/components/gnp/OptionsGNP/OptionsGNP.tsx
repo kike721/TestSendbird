@@ -5,6 +5,7 @@ import telephone from '../../../assets/telephone.png';
 import print from '../../../assets/print.png';
 
 const WrapOptions = styled.div`
+  align-items: center;
   display: flex;
   flex-direction: column;
   font-size: 24;
@@ -14,17 +15,24 @@ const WrapOptions = styled.div`
 
 const StyleOption = styled.div`
   background: #FFE9DD;
+  border-radius: 24px;
   color: #FF6E1F;
   display: flex;
   flex-direction: column;
   font-size: 24;
   font-weight: 700;
   justify-content: center;
+  margin-bottom: 1em;
+  max-width: 300px;
   padding: 2em;
   text-align: center;
   width: 100%;
-  border-radius: 24px;
-  margin-bottom: 1em;
+  cursor: pointer;
+  transition: all 0.5s;
+
+  &:hover {
+    filter: brightness(95%);
+  }
 `;
 
 const ImgStyle = styled.img`
@@ -43,14 +51,14 @@ function getCallOption(callOption?: DirectCallOption) {
   };
 }
 
-
 const OptionsGNP = ({
-  text = '¿En qué te podemos ayudar?'
-}: { text?: string; }) => {
-  const sbCall = useSbCalls();
+  onClickPrint,
+}: { onClickPrint?: () => void; }) => {
+  const sbCall = useSbCalls() ;
   const dial = (isVideoCall: boolean) => {
     sbCall.dial({ userId: 'receiver', isVideoCall, callOption: getCallOption({}) });
   };
+
   return (
     <WrapOptions>
       <StyleOption onClick={() => dial(true)} >
@@ -58,7 +66,7 @@ const OptionsGNP = ({
         Marcar a un agente
       </StyleOption>
       <StyleOption>
-        <ImgStyle src={print} alt="call telephone" />
+        <ImgStyle onClick={onClickPrint} src={print} alt="call telephone" />
         Imprimir pólizas
       </StyleOption>
     </WrapOptions>
