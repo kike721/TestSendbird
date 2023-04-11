@@ -32,8 +32,8 @@ const DirectCallMain: React.FC<DirectCallMainProps> = ({ children }) => {
   const query = new URLSearchParams(useLocation().search);
   const { path, url } = useRouteMatch();
 
-  const [showPrint, setShowPrint] = useState(true);
-  const [showSuccess, setShowSuccess] = useState(true);
+  const [showPrint, setShowPrint] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
 
   const restartStates = () => {
     setKeyVideo('loop');
@@ -41,8 +41,20 @@ const DirectCallMain: React.FC<DirectCallMainProps> = ({ children }) => {
   }
 
   const handleOptions = () => {
-    console.log('entre')
     setShowPrint(true);
+  }
+
+  const handleOnClickOption = () => {
+    setShowSuccess(true);
+    setShowPrint(false);
+  }
+
+  const handleOnClickBackMenu = () => {
+    setShowSuccess(false);
+  }
+
+  const handleOnClickEndSession = () => {
+    history.replace('/video');
   }
 
   useEffect(() => {
@@ -70,7 +82,6 @@ const DirectCallMain: React.FC<DirectCallMainProps> = ({ children }) => {
   useEffect(() => {
     if (onCall) {
       const { callState } = onCall;
-      console.log(callState, 'Estado de la llamada')
       if (callState === 'ended' as CallState) {
         restartStates();
         clearCalls();
@@ -82,19 +93,24 @@ const DirectCallMain: React.FC<DirectCallMainProps> = ({ children }) => {
     <Wrapper>
       {!!calls.length && <CallView call={calls[calls.length - 1]}/>}
       {header}
-      {!showPrint &&
+      {!showPrint && !showSuccess &&
         <>
           <HeaderGNP text='¿En qué te podemos ayudar?' />
-          <OptionsGNP onClickPrint={() => handleOptions}/>
+          <OptionsGNP onClickPrint={handleOptions}/>
         </>
       }
-      {false &&
+      {showPrint &&
         <>
           <HeaderGNP text='¿En qué te podemos ayudar?' />
-          <PrintGNP />
+          <PrintGNP onClickOption={handleOnClickOption}/>
         </>
       }
-      {showSuccess && showPrint && <SuccessGNP />}
+      {showSuccess &&
+        <SuccessGNP
+          onClickBackMenu={handleOnClickBackMenu}
+          onClickEndSession={handleOnClickEndSession}
+        />
+      }
       {onCall &&
         <Overlay>
           <CallView call={onCall} />

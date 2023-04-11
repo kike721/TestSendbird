@@ -36,13 +36,14 @@ const StyleOption = styled.div`
 `;
 
 const PrintGNP = ({
-  text = '¿En qué te podemos ayudar?'
-}: { text?: string; }) => {
+  text = '¿En qué te podemos ayudar?',
+  onClickOption,
+}: { text?: string; onClickOption: (id: string) => void }) => {
   return (
     <Content>
       <Text>Selecciona la póliza que deseas imprimir:</Text>
       <WrapOptions>
-        <StyleOption>
+        <StyleOption onClick={() => onClickOption('1')}>
           Poliza 1
         </StyleOption>
         <StyleOption>

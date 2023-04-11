@@ -34,18 +34,24 @@ const ButtonBack = styled.button`
   corder-radius: 20px;
 `;
 
-const SuccessGNP = () => {
+const SuccessGNP = ({
+  onClickBackMenu,
+  onClickEndSession
+}: {
+  onClickBackMenu: () => void;
+  onClickEndSession: () => void;
+}) => {
   return (
     <Content>
       <ContentLogo>
         <ImgLogo src={ImgSuccess} alt="success exitoso imagen" />
         <Text>Póliza impresa</Text>
       </ContentLogo>
-      <ButtonBack>
+      <ButtonBack onClick={onClickBackMenu}>
         <img src={Shape} alt="back"></img>
         Regresar al menú
       </ButtonBack>
-      <button>Finalizar sesión</button>
+      <button onClick={onClickEndSession}>Finalizar sesión</button>
       <HeaderGNP />
     </Content>
   )
