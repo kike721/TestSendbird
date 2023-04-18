@@ -60,7 +60,7 @@ interface DialViewProps {}
 const DialView: React.FC<DialViewProps> = props => {
   const sbCall = useSbCalls();
   const dial = (isVideoCall: boolean) => {
-    sbCall.dial({ userId: 'receiver', isVideoCall, callOption: getCallOption({}) });
+    sbCall.dial({ userId: 'test_dev_agent', isVideoCall, callOption: getCallOption({}) });
   };
 
   const buttonCall = () => <Wrapper>

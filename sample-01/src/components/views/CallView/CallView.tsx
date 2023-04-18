@@ -218,7 +218,7 @@ const CallView: React.FC<CallViewProps> = ({ call }) => {
 
   return (
     <Wrapper>
-      {/* <Background>
+      { <Background>
         {
           call.isVideoCall
             ? (
@@ -232,7 +232,7 @@ const CallView: React.FC<CallViewProps> = ({ call }) => {
                     controls={isSafari()}
                   />
                 </VideoViewDiv>
-                <VideoViewDiv size={localMediaViewSize}>
+                {/* <VideoViewDiv size={localMediaViewSize}>
                   <VideoView
                     ref={localMediaViewRef}
                     playsInline
@@ -240,7 +240,7 @@ const CallView: React.FC<CallViewProps> = ({ call }) => {
                     muted
                     style={{ backgroundColor: 'var(--white)' }}
                   />
-                </VideoViewDiv>
+                </VideoViewDiv> */}
               </>
             )
             : (
@@ -261,7 +261,7 @@ const CallView: React.FC<CallViewProps> = ({ call }) => {
               </>
             )
         }
-      </Background> */}
+      </Background> }
       <Foreground>
         {
           remoteUser.profileUrl && <PeerProfile src={remoteUser.profileUrl || ''} alt="Sendbird voice & video call opponent profile photo" />
