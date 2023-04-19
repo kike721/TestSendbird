@@ -55,8 +55,9 @@ const OptionsGNP = ({
   onClickPrint,
 }: { onClickPrint?: () => void; }) => {
   const sbCall = useSbCalls() ;
+  const agentId = process.env.REACT_APP_AGENT_ID || 'test_dev_agent'
   const dial = (isVideoCall: boolean) => {
-    sbCall.dial({ userId: 'test_dev_agent', isVideoCall, callOption: getCallOption({}) });
+    sbCall.dial({ userId: agentId, isVideoCall, callOption: getCallOption({}) });
   };
 
   return (

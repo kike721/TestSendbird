@@ -72,7 +72,7 @@ const VideoGNP = () => {
   }
 
   return (
-    <Wrapper>
+    <Wrapper onClick={handleSection}>
       <ReactPlayer
         style={{
           position: 'fixed',
@@ -84,11 +84,12 @@ const VideoGNP = () => {
         playing={playVideo}
         url={Video}
         loop={true}
+        muted
       />
       <ContentClick>
         <ImgLogo src={logoGNPWhite} alt="loco GNP color" />
         <p>Te damos la bienvenida al kiosko de servicio</p>
-        <ImgSelect src={selection} alt="click selected" onClick={handleSection}/>
+        <ImgSelect src={selection} alt="click selected"/>
         <span>Toca para iniciar</span>
       </ContentClick>
     </Wrapper>
