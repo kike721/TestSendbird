@@ -1,20 +1,24 @@
 import styled from 'styled-components';
 
 const Content = styled.div`
+  height: 100%;
+  margin: auto;
+  max-width: 1080px;
   padding: 2em;
+  width: 100%;
 `;
 
 const WrapOptions = styled.div`
   display: flex;
-  flex-wrap: wrap;
   flex-direction: row;
+  flex-wrap: wrap;
   font-size: 24;
   justify-content: space-between;
 `;
 
 const Text = styled.p`
   color: #1C4481;
-  font-size: 24;
+  font-size: 2.25em;
   font-weight: 700;
 `;
 
@@ -23,16 +27,22 @@ const StyleOption = styled.div`
   border-radius: 24px;
   border: solid 2px #FF6E1F;
   color: #FF6E1F;
+  cursor: pointer;
   display: flex;
-  font-size: 24;
+  font-size: 2.25em;
   font-weight: 700;
   justify-content: center;
   margin-bottom: 1em;
+  margin: 1em 5px;
+  max-width: 45%;
   padding: 2em;
+  ransition: all 0.5s;
   text-align: center;
   width: 100%;
-  max-width: 140px;
-  margin: 1em 5px;
+
+  &:hover {
+    filter: brightness(95%);
+  }
 `;
 
 const PrintGNP = ({
