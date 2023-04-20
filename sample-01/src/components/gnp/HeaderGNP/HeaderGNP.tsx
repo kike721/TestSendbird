@@ -10,20 +10,21 @@ const ContentHeader = styled.div`
   font-weight: 700;
   justify-content: center;
   padding: 2em;
+  padding: 5em 2em;
+  text-align: center;
   text-aling: center;
   width: 100%;
-  text-align: center;
-  padding: 2em;
 `;
 
 const ImgLogo = styled.img`
-  width: 100%;
-  max-width: 150px;
   margin: 0 auto;
+  max-width: 370px;
+  width: 100%;
 `;
 
 const Text = styled.p`
-  margin-top: 3em;
+  font-size: 3em;
+  margin-top: 2em;
 `;
 
 const HeaderGNP = ({
@@ -33,7 +34,7 @@ const HeaderGNP = ({
     <>
       <ContentHeader>
         <ImgLogo src={logoGNPColor} alt="loco GNP color" />
-        {text && <Text></Text>}
+        {text && <Text>{text}</Text>}
       </ContentHeader>
     </>
   )

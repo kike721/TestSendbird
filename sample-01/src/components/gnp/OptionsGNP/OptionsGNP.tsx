@@ -9,26 +9,31 @@ const WrapOptions = styled.div`
   display: flex;
   flex-direction: column;
   font-size: 24;
+  height: 100%;
   justify-content: center;
+  margin: auto;
+  max-width: 1080px;
   padding: 2em;
 `;
 
 const StyleOption = styled.div`
-  background: #FFE9DD;
+  -webkit-box-pack: center;
+  background: rgb(255, 233, 221);
   border-radius: 24px;
-  color: #FF6E1F;
+  color: rgb(255, 110, 31);
+  cursor: pointer;
   display: flex;
   flex-direction: column;
-  font-size: 24;
+  font-size: 2.25em;
   font-weight: 700;
   justify-content: center;
-  margin-bottom: 1em;
-  max-width: 300px;
-  padding: 2em;
+  margin-bottom: 2em;
+  margin-top: 2em;
+  max-width: 85%;
+  padding: 1em;
   text-align: center;
+  transition: all 0.5s ease 0s;
   width: 100%;
-  cursor: pointer;
-  transition: all 0.5s;
 
   &:hover {
     filter: brightness(95%);
@@ -36,9 +41,9 @@ const StyleOption = styled.div`
 `;
 
 const ImgStyle = styled.img`
+  margin: 0.4em auto;
+  max-width: 84px;
   width: 100%;
-  max-width: 40px;
-  margin: 0 auto 1em auto;
 `;
 
 function getCallOption(callOption?: DirectCallOption) {

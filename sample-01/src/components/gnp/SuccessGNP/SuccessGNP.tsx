@@ -16,14 +16,18 @@ const ContentLogo = styled.div`
   text-align: center;
 `;
 
+const ContentButtons = styled.div`
+  margin-bottom: 3em;
+`;
+
 const ImgLogo = styled.img`
   width: 100%;
-  max-width: 40px;
+  max-width: 100px;
   margin: autop;
 `;
 
 const Text = styled.p`
-  font-size: 24;
+  font-size: 2.25em;
   font-weight: 700;
   color: #2E8241;
 `;
@@ -36,11 +40,11 @@ const ButtonBack = styled.button`
   display: flex;
   flex-direction: row;
   align-items: center;
-  font-size: 16px;
+  font-size: 2.25em;
   font-weight: 700;
   justify-content: center;
   margin-bottom: 1em;
-  max-width: 250px;
+  max-width: 690px;
   padding: 1.5em;
   text-align: center;
   width: 100%;
@@ -48,7 +52,8 @@ const ButtonBack = styled.button`
   transition: all 0.5s;
 
   & img {
-    width: 25px;
+    width: 100%;
+    max-width: 60px;
     margin: 0 1em;
   }
 
@@ -67,11 +72,11 @@ const ButtonSession = styled.button`
   cursor: pointer;
   display: flex;
   flex-direction: column;
-  font-size: 16px;
+  font-size: 2.25em;
   font-weight: 700;
   justify-content: center;
   margin-bottom: 1em;
-  max-width: 250px;
+  max-width: 690px;
   padding: 1.5em;
   text-align: center;
   transition: all 0.5s;
@@ -95,7 +100,7 @@ const SuccessGNP = ({
         <ImgLogo src={ImgSuccess} alt="success exitoso imagen" />
         <Text>Póliza impresa</Text>
       </ContentLogo>
-      <div>
+      <ContentButtons>
         <ButtonBack onClick={onClickBackMenu}>
           <img src={Shape} alt="back"></img>
           Regresar al menú
@@ -103,7 +108,7 @@ const SuccessGNP = ({
         <ButtonSession onClick={onClickEndSession}>
           Finalizar sesión
         </ButtonSession>
-      </div>
+      </ContentButtons>
       <HeaderGNP />
     </Content>
   )
