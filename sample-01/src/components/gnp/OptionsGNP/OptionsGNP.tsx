@@ -72,7 +72,7 @@ const OptionsGNP = ({
         Marcar a un agente
       </StyleOption>
       <StyleOption onClick={onClickPrint}>
-        <ImgStyle src={print} alt="call telephone" />
+        <ImgStyle src={print} alt="print" />
         Imprimir pólizas
       </StyleOption>
     </WrapOptions>

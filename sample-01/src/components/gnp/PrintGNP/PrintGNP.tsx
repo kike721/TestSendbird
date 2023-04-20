@@ -1,4 +1,7 @@
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { PolicyType } from 'types';
+import { getPolicies } from '../../../api';
 
 const Content = styled.div`
   height: 100%;
@@ -49,34 +52,29 @@ const PrintGNP = ({
   text = '¿En qué te podemos ayudar?',
   onClickOption,
 }: { text?: string; onClickOption: (id: string) => void }) => {
+  const [policies, setPolicies] = useState<PolicyType[]>([]);
+  useEffect(() => {
+    getPolicies().then(response => {
+      if (response.data) {
+        setPolicies(response.data);
+      } else {
+        console.log(response.error);
+      }
+    }).catch(error => {
+      // setPolicies(error);
+      console.log(error);
+    })
+  }, []);
+
   return (
     <Content>
       <Text>Selecciona la póliza que deseas imprimir:</Text>
       <WrapOptions>
-        <StyleOption onClick={() => onClickOption('1')}>
-          Poliza 1
-        </StyleOption>
-        <StyleOption>
-          Poliza 2
-        </StyleOption>
-        <StyleOption>
-          Poliza 2
-        </StyleOption>
-        <StyleOption>
-          Poliza 2
-        </StyleOption>
-        <StyleOption>
-          Poliza 2
-        </StyleOption>
-        <StyleOption>
-          Poliza 2
-        </StyleOption>
-        <StyleOption>
-          Poliza 2
-        </StyleOption>
-        <StyleOption>
-          Poliza 2
-        </StyleOption>
+        {policies.map(policy =>
+          <StyleOption onClick={() => onClickOption(policy.policy_id.toString())}>
+            {policy.description }
+          </StyleOption>
+        )}
       </WrapOptions>
     </Content>
   )

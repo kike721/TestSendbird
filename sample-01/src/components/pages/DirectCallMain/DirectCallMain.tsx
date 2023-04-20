@@ -12,6 +12,7 @@ import HeaderGNP from 'components/gnp/HeaderGNP';
 import PrintGNP from 'components/gnp/PrintGNP';
 import OptionsGNP from 'components/gnp/OptionsGNP';
 import SuccessGNP from 'components/gnp/SuccessGNP';
+import { printPolicy } from 'api';
 
 const Wrapper = styled.div`
   width: 100vw;
@@ -23,30 +24,25 @@ const Wrapper = styled.div`
 interface DirectCallMainProps {
 }
 const DirectCallMain: React.FC<DirectCallMainProps> = ({ children }) => {
-  const [playVideo, setPlayVideo] = useState(false);
-  const [keyVideo, setKeyVideo] = useState('');
-  const refPlayer = useRef(null);
   const { isAuthenticated, calls, clearCalls } = useSbCalls();
   const history = useHistory();
   const location = useLocation();
-  const query = new URLSearchParams(useLocation().search);
-  const { path, url } = useRouteMatch();
-
+  const { url } = useRouteMatch();
   const [showPrint, setShowPrint] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
-
-  const restartStates = () => {
-    setKeyVideo('loop');
-    setPlayVideo(true);
-  }
 
   const handleOptions = () => {
     setShowPrint(true);
   }
 
-  const handleOnClickOption = () => {
-    setShowSuccess(true);
-    setShowPrint(false);
+  const handleOnClickOption = (id: string) => {
+    printPolicy(id).then(response => {
+      if (response.data && response.data.printed === 'OK') {
+        setShowSuccess(true);
+        setShowPrint(false);
+      }
+    })
+    
   }
 
   const handleOnClickBackMenu = () => {
@@ -56,11 +52,6 @@ const DirectCallMain: React.FC<DirectCallMainProps> = ({ children }) => {
   const handleOnClickEndSession = () => {
     history.replace('/video');
   }
-
-  useEffect(() => {
-    setKeyVideo('loop');
-    setPlayVideo(true);
-  },[])
 
   useEffect(() => {
     if (location.pathname === `${url}/login`) {
@@ -83,7 +74,6 @@ const DirectCallMain: React.FC<DirectCallMainProps> = ({ children }) => {
     if (onCall) {
       const { callState } = onCall;
       if (callState === 'ended' as CallState) {
-        restartStates();
         clearCalls();
       }
     }
