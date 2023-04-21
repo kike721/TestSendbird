@@ -100,7 +100,7 @@ const getVideoStyleFromSize = (size: MediaViewSize) => {
     case 'small':
       return css`
           position: absolute;
-          bottom: 180px;
+          top: 80px;
           left: 16px;
           width: 150px;
           height: 100px;
