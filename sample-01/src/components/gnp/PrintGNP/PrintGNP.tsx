@@ -72,7 +72,7 @@ const PrintGNP = ({
       <WrapOptions>
         {policies.map(policy =>
           <StyleOption onClick={() => onClickOption(policy.policy_id.toString())}>
-            {policy.description }
+            {policy.name}
           </StyleOption>
         )}
       </WrapOptions>

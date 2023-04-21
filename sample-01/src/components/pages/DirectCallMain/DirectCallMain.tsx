@@ -37,7 +37,7 @@ const DirectCallMain: React.FC<DirectCallMainProps> = ({ children }) => {
 
   const handleOnClickOption = (id: string) => {
     printPolicy(id).then(response => {
-      if (response.data && response.data.printed === 'OK') {
+      if (response.data && response.data.printing === 'OK') {
         setShowSuccess(true);
         setShowPrint(false);
       }

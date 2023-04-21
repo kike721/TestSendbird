@@ -17,23 +17,26 @@ const getPolicies = async () => {
       data: null,
       error: true,
     };
-    // return [
-    //   {
-    //     "description": "Formato de reembolso vida más",
-    //     "name": "FormatoDeReembolsoVidaMas",
-    //     "policy_id": 1,
-    //   },
-    //   {
-    //     "description": "Formato de reembolso",
-    //     "name": "FormatoDeReembolso",
-    //     "policy_id": 2,
-    //   },
-    //   {
-    //     "description": "Formato único de información bancaria",
-    //     "name": "FormatoUnicoDeInformacionBancaria",
-    //     "policy_id": 3
-    //   }
-    // ];
+    // return {
+    //   data: [
+    //     {
+    //       "description": "Formato de reembolso vida más",
+    //       "name": "Formato de reembolso vida más",
+    //       "policy_id": 1,
+    //     },
+    //     {
+    //       "description": "Formato de reembolso",
+    //       "name": "Formato de reembolso",
+    //       "policy_id": 2,
+    //     },
+    //     {
+    //       "description": "Formato único de información bancaria",
+    //       "name": "Formato único de información bancaria",
+    //       "policy_id": 3
+    //     }
+    //   ],
+    //   error: false,
+    // }
   }
 };
 
@@ -51,9 +54,12 @@ const printPolicy = async (id: string) => {
       error: true,
     };
     // return {
-    //   "job_number": 47,
-    //   file: "/home/pi/Documents/policies/FormatoDeReembolsoVidaMas.pdf",
-    //   printed: "OK"
+    //   data: {
+    //     "job_number": 47,
+    //     file: "/home/pi/Documents/policies/FormatoDeReembolsoVidaMas.pdf",
+    //     printing: "OK",
+    //   },
+    //   error: false,
     // }
   }
 }

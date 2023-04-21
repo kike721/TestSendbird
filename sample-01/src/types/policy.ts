@@ -9,5 +9,5 @@ export interface PolicyType {
 export interface PrintResponseType {
   'job_number': number;
   file: string;
-  printed: PrintedType;
+  printing: PrintedType;
 }
