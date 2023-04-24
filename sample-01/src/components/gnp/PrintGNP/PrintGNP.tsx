@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { PolicyType } from 'types';
 import { getPolicies } from '../../../api';
+import Shape from '../../../assets/Shape.svg';
 
 const Content = styled.div`
   height: 100%;
@@ -48,10 +49,41 @@ const StyleOption = styled.div`
   }
 `;
 
+const ButtonBack = styled.button`
+  background: #FFE9DD;
+  border-radius: 24px;
+  color: #FF6E1F;
+  border: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 2.25em;
+  font-weight: 700;
+  justify-content: center;
+  margin-bottom: 1em;
+  max-width: 690px;
+  padding: 1.5em;
+  text-align: center;
+  width: 100%;
+  cursor: pointer;
+  transition: all 0.5s;
+
+  & img {
+    width: 100%;
+    max-width: 60px;
+    margin: 0 1em;
+  }
+
+  &:hover {
+    filter: brightness(95%);
+  }
+`;
+
 const PrintGNP = ({
   text = '¿En qué te podemos ayudar?',
   onClickOption,
-}: { text?: string; onClickOption: (id: string) => void }) => {
+  onClickBackMenu,
+}: { text?: string; onClickOption: (id: string) => void; onClickBackMenu: () => void }) => {
   const [policies, setPolicies] = useState<PolicyType[]>([]);
   useEffect(() => {
     getPolicies().then(response => {
@@ -68,6 +100,10 @@ const PrintGNP = ({
 
   return (
     <Content>
+      <ButtonBack onClick={onClickBackMenu}>
+        <img src={Shape} alt="back"></img>
+        Regresar al menú
+      </ButtonBack>
       <Text>Selecciona la póliza que deseas imprimir:</Text>
       <WrapOptions>
         {policies.map(policy =>

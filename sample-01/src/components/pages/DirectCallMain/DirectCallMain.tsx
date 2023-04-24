@@ -45,6 +45,10 @@ const DirectCallMain: React.FC<DirectCallMainProps> = ({ children }) => {
     
   }
 
+  const onClickBackPrintView = () => {
+    setShowPrint(false);
+  }
+
   const handleOnClickBackMenu = () => {
     setShowSuccess(false);
   }
@@ -92,7 +96,10 @@ const DirectCallMain: React.FC<DirectCallMainProps> = ({ children }) => {
       {showPrint &&
         <>
           <HeaderGNP text='¿En qué te podemos ayudar?' />
-          <PrintGNP onClickOption={handleOnClickOption}/>
+          <PrintGNP
+            onClickBackMenu={onClickBackPrintView}
+            onClickOption={handleOnClickOption}
+          />
         </>
       }
       {showSuccess &&
