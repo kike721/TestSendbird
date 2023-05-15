@@ -130,7 +130,7 @@ const DialView: React.FC<DialViewProps> = props => {
   }
 
   const handleOnClickWhatsappButton = () => {
-    window.open('https://wa.me/14421555140?text=Prueba%20motorola');
+    window.open('https://wa.me/13325065874?text=Prueba%20motorola');
   }
 
   return (
