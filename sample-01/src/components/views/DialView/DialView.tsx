@@ -24,7 +24,7 @@ const ControlsContainer = styled.div`
   flex-direction: column;
   box-sizing: border-box;
   border: none;
-  margin-top: 100px;
+  margin-top: 10px;
 `;
 
 const TitleControls = styled.div`
@@ -50,11 +50,12 @@ const HeaderTitle = styled.div`
 `;
 
 const Logo = styled.img`
+  object-fit: contain;
 `;
 
 const CallButton = styled.button`
   align-items: center;
-  background: #13283e;
+  background: #A0181F;
   border: none;
   display: flex;
   flex-direction: column;
@@ -122,7 +123,7 @@ const DialView: React.FC<DialViewProps> = props => {
   const sbCall = useSbCalls();
   const AGENT_ID = process.env.REACT_APP_RECEIVER_ID || '';
   const dial = (isVideoCall: boolean) => {
-    sbCall.dial({ userId: 'Agente_Motorola', isVideoCall, callOption: getCallOption({}) });
+    sbCall.dial({ userId: 'agente_colgate', isVideoCall, callOption: getCallOption({}) });
   };
 
   const handleOnClickCallButton = () => {
@@ -136,8 +137,8 @@ const DialView: React.FC<DialViewProps> = props => {
   return (
     <Wrapper>
       <TitleContainer>
-        <HeaderTitle>Bienvenido al</HeaderTitle>
-        <Title>Centro de Experiencia Remota</Title>
+        {/* <HeaderTitle>Bienvenido al</HeaderTitle>
+        <Title>Centro de Experiencia Remota</Title> */}
         <Logo src='/assets/logo.png'></Logo>
       </TitleContainer>
       <ControlsContainer>
@@ -153,7 +154,7 @@ const DialView: React.FC<DialViewProps> = props => {
           </CallButton>
         </ButtonsContainer>
       </ControlsContainer>
-      <LogoBackground src="/assets/logo_footer.png"/>
+      {/* <LogoBackground src="/assets/logo_footer.png"/> */}
     </Wrapper>
   );
 };

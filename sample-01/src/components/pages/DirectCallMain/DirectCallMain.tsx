@@ -13,7 +13,7 @@ import * as mixins from "../../../styles/mixins";
 import Overlay from "../../atoms/Overlay";
 
 const Wrapper = styled.div`
-  background-color: #001428;
+  background-color: #EE122A;
   width: 100vw;
   height: 100vh;
   padding-bottom: 55px; // TabToolbar height
