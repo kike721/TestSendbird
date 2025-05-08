@@ -71,7 +71,7 @@ const ButtonsContainer = styled.div`
   align-items: center;
   display: flex;
   margin-top: 54px;
-  justify-content: space-between;
+  justify-content: center;
   width: 100%;
 `;
 
@@ -123,7 +123,7 @@ const DialView: React.FC<DialViewProps> = props => {
   const sbCall = useSbCalls();
   const AGENT_ID = process.env.REACT_APP_RECEIVER_ID || '';
   const dial = (isVideoCall: boolean) => {
-    sbCall.dial({ userId: 'agente_colgate', isVideoCall, callOption: getCallOption({}) });
+    sbCall.dial({ userId: 'agente', isVideoCall, callOption: getCallOption({}) });
   };
 
   const handleOnClickCallButton = () => {
@@ -139,19 +139,19 @@ const DialView: React.FC<DialViewProps> = props => {
       <TitleContainer>
         {/* <HeaderTitle>Bienvenido al</HeaderTitle>
         <Title>Centro de Experiencia Remota</Title> */}
-        <Logo src='/assets/logo.png'></Logo>
+        {/* <Logo src='/assets/logo.png'></Logo> */}
       </TitleContainer>
       <ControlsContainer>
-        <TitleControls>¿Cómo Prefieres recibir la asesoría?</TitleControls>
+        <TitleControls>Vive la experiencia de tu asesoría en videollamada</TitleControls>
         <ButtonsContainer>
           <CallButton onClick={handleOnClickCallButton}>
             <IconButton src="/assets/icon-video.png"/>
             <TextButton>Videollamada</TextButton>
           </CallButton>
-          <CallButton onClick={handleOnClickWhatsappButton}>
+          {/* <CallButton onClick={handleOnClickWhatsappButton}>
             <IconButton src="/assets/icon-whatsapp.png"/>
             <TextButton>Whatsapp</TextButton>
-          </CallButton>
+          </CallButton> */}
         </ButtonsContainer>
       </ControlsContainer>
       {/* <LogoBackground src="/assets/logo_footer.png"/> */}
